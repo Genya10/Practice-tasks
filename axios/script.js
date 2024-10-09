@@ -4,17 +4,16 @@ const cityUser = document.querySelector('.city')
 const streetUser = document.querySelector('.street')
 const suiteUser = document.querySelector('.suite')
 
-fetch('https://jsonplaceholder.typicode.com/users/1')
-.then(response => response.json())
-.then(data => {
-    const {name, email, address:{city, street, suite}} = data
+axios.get('https://jsonplaceholder.typicode.com/users/1')
+.then(response => {
+    const {name, email, address:{city, street, suite}} = response.data
 
     nameUser.textContent = `Name user: ${name}`
     emailUser.textContent = `Email user: ${email}`
     cityUser.textContent = `City: ${city}`
     streetUser.textContent = `Street: ${street}`
     suiteUser.textContent = `Suite: ${suite}`
-    console.log(data)
+    console.log(response.data)
 })
 .catch(error => {
     console.error('Error', error)
@@ -23,11 +22,9 @@ fetch('https://jsonplaceholder.typicode.com/users/1')
 ///////////////////////////////////////////////
 let ulElement = document.querySelector('ul')
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-.then(response => response.json())
-.then(posts => {
-
-    posts.forEach(post => {
+axios.get('https://jsonplaceholder.typicode.com/posts')
+.then(response => {
+    response.data.forEach(post => {
         const li = document.createElement('li')
         li.textContent = post.title
         ulElement.append(li)
