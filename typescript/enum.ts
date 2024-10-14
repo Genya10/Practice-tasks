@@ -19,3 +19,16 @@ const user1: IUser1 = {
 }
 
 console.log(EnumRoles[EnumRoles.ADMIN])
+
+
+//Assertions(утверждения)
+const inputElement = document.querySelector('input')
+const value1 = (inputElement as HTMLInputElement).value
+const value2 = (<HTMLInputElement>inputElement).value
+
+const getLength = (text: string | null):number => {
+    return text!.length
+}
+
+getLength('qw4ret')
+getLength(null)
