@@ -32,6 +32,25 @@ class Btn {
         return button;
     }
 }
-const btn = new Btn('Button', ['html', 'css', 'js']);
+const btn = new Btn('Button', ['btn', 'btn-success']);
 console.log(btn);
 document.body.append(btn.create());
+btn.text = 'Button 2';
+btn.className = ['btn', 'btn-warning'];
+console.log(btn);
+document.body.append(btn.create());
+///////////////////////
+class ButtonElement {
+    constructor(text, className) {
+        this.text = text;
+        this.className = className;
+    }
+    create() {
+        const button = document.createElement('button');
+        button.textContent = this.text;
+        this.className.forEach(item => button.classList.add(item));
+        return button;
+    }
+}
+const btn3 = new ButtonElement('Button 3', ['btn', 'btn-primary']);
+document.body.append(btn3.create());
