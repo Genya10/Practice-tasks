@@ -1,0 +1,15 @@
+.red {
+    color: red;
+}
+.bold{
+    font-weight: 700;
+}
+.blue {
+    color: blue;
+}
+.green {
+    color: yellow;
+}
+.upperCase {
+    text-transform: uppercase;
+}
