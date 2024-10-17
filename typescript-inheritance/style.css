@@ -13,3 +13,7 @@
 .upperCase {
     text-transform: uppercase;
 }
+.img-margin {
+    width: 500px;
+    margin-left: 200px;
+}

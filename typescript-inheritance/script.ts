@@ -49,8 +49,8 @@ class ElementHTML {
     text: string;
     tag: string 
 
-    constructor(a: string,tag:string){
-        this.text = a
+    constructor(text: string, tag:string){
+        this.text = text
         this.tag = tag
     }
     render():HTMLElement {
@@ -79,9 +79,9 @@ manyDiv.forEach(item => {
 class ElementHTMLCSS extends ElementHTML {
     cssClass: string[];
 
-    constructor(a:string, tag:string, b: string[]){
-        super(a,tag)
-        this.cssClass = b
+    constructor(text:string, tag:string, cssClass: string[]){
+        super(text,tag)
+        this.cssClass = cssClass
     }
     render(): HTMLElement {
         const div = super.render()
@@ -103,3 +103,24 @@ const divArray = [
 divArray.forEach(item => {
     document.body.append(item.render())
 })
+
+////// ElementImage
+class ElementImage extends ElementHTMLCSS {
+    src: string
+
+    constructor(src:string, cssClass: string[], text:string){
+        super(text,'img', cssClass)
+        this.src = src;
+    }
+
+    render(): HTMLElement {
+        const img = document.createElement(this.tag)
+        img.setAttribute('src', this.src)
+        img.setAttribute('alt', this.text)
+        this.cssClass.forEach(item => img.classList.add(item))
+        return img
+    }
+}
+
+const img = new ElementImage('./img/IMG_20190127_125003_774.jpg',['img-margin'],'Hello Marina')
+document.body.append(img.render())

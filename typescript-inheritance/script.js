@@ -35,8 +35,8 @@ const user3 = new User3('Vasya', 'zxcvbn', 28);
 console.log(user3.showInfo());
 //////////////////////////
 class ElementHTML {
-    constructor(a, tag) {
-        this.text = a;
+    constructor(text, tag) {
+        this.text = text;
         this.tag = tag;
     }
     render() {
@@ -58,9 +58,9 @@ manyDiv.forEach(item => {
 });
 ////////////////////////////////
 class ElementHTMLCSS extends ElementHTML {
-    constructor(a, tag, b) {
-        super(a, tag);
-        this.cssClass = b;
+    constructor(text, tag, cssClass) {
+        super(text, tag);
+        this.cssClass = cssClass;
     }
     render() {
         const div = super.render();
@@ -79,3 +79,19 @@ const divArray = [
 divArray.forEach(item => {
     document.body.append(item.render());
 });
+////// ElementImage
+class ElementImage extends ElementHTMLCSS {
+    constructor(src, cssClass, text) {
+        super(text, 'img', cssClass);
+        this.src = src;
+    }
+    render() {
+        const img = document.createElement(this.tag);
+        img.setAttribute('src', this.src);
+        img.setAttribute('alt', this.text);
+        this.cssClass.forEach(item => img.classList.add(item));
+        return img;
+    }
+}
+const img = new ElementImage('./img/IMG_20190127_125003_774.jpg', ['img-margin'], 'Hello Marina');
+document.body.append(img.render());
