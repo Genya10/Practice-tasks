@@ -124,3 +124,30 @@ class ElementImage extends ElementHTMLCSS {
 
 const img = new ElementImage('./img/IMG_20190127_125003_774.jpg',['img-margin'],'Hello Marina')
 document.body.append(img.render())
+
+///////////////////////////////
+class PictureHTML extends ElementImage {
+    source: string[]
+
+    constructor(src:string, cssClass: string[], text:string, source: string[]){
+      super(src, cssClass, text)
+      this.source = source
+    }
+    render(): HTMLElement {
+        const img = super.render()
+        const pictures = document.createElement('picture')
+        this.source.forEach((item) => {
+            const source = document.createElement('source')
+            source.setAttribute('srcset', item)
+            source.setAttribute('media', '(min-width:600px)')
+            pictures.append(source)
+        })
+        pictures.append(img)
+        return pictures
+    }
+}
+
+const pict = new PictureHTML('./img/IMG_20190127_125003_774.jpg',['img-margin'],
+                             'Hello pups',['./img/img_12345.jpg'])
+document.body.append(pict.render())
+
