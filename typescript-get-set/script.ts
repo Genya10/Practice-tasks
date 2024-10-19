@@ -16,8 +16,48 @@ class T01 {
 const  obj1 = new T01()
 console.log(obj1.n1)
 obj1.n1 = 444
-console.log(obj1.n1)
+console.log(obj1.n2)
 
-class T02 extends T01 {}
+class T02 extends T01 {
+ public get n1():number{
+    return super.n1
+ }
+ public set n1(a:number){
+    super.n1 = a
+ }
+}
+
 const obj2 = new T02()
-console.log(obj2.n2)
+console.log(obj2.n1)
+obj2.n1 = 1000
+console.log(obj2.n1)
+//console.log(obj2.n2)
+
+
+class Person {
+    public age: number = 30
+
+    constructor(age:number){
+        this.age = age
+    }
+
+    public getAge(): number {
+        console.log('There is age')
+        return this.age
+    }
+
+    public setAge(newAge:number): void {
+        if(newAge < 0){
+            console.log('It is wrong')
+        } else {
+            this.age = newAge
+        }
+    }
+}
+
+const person = new Person(30)
+console.log(person.getAge())
+person.age = -7
+console.log(person.age)
+person.age = 33
+console.log(person.age)
