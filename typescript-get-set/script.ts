@@ -55,7 +55,7 @@ class Person {
     }
 }
 
-const person = new Person(30)
+const person = new Person(32)
 console.log(person.getAge())
 person.age = -7
 console.log(person.age)
